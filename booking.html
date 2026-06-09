@@ -476,6 +476,9 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 @media (max-width: 768px) {
   .nav { padding: 0 20px; }
   .nav-links { display: none; }
+  .nav-hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text, #e2e8f0); border-radius: 2px; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #1A0F0A; padding: 24px; gap: 8px; border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
   .hero { padding: 130px 24px 80px; }
   .steps, .calendar-section, .intake, .faq, .testimonials, .final-cta { padding: 70px 24px; }
   .form-grid { grid-template-columns: 1fr; }
@@ -490,13 +493,16 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 <!-- ── NAV ────────────────────────────────────────────────────────── -->
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">Santosh<span>land</span></a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="services.html">Services</a>
     <a href="quiz.html">Dosha Quiz</a>
     <a href="about.html">About</a>
     <a href="blog.html">Blog</a>
     <a href="booking.html" class="nav-cta">Book Free Consult</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" style="display:none">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ── HERO ───────────────────────────────────────────────────────── -->
@@ -769,7 +775,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 <footer class="footer">
   <div class="footer-logo">Santosh<span>land</span></div>
   <div>5,000 years of wisdom, personalized for you.</div>
-  <div>© 2025 Santoshland. All rights reserved.</div>
+  <div>© 2026 Santoshland. All rights reserved.</div>
 </footer>
 
 <!-- ── SCRIPTS ────────────────────────────────────────────────────── -->
@@ -779,6 +785,16 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
+
+// Mobile nav
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+}
 
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(btn => {

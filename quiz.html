@@ -1214,9 +1214,7 @@ function showResults(name) {
 }
 
 function openConsultation(type) {
-  // Placeholder — replace with actual booking URL
-  console.log('[Santoshland] Booking consultation for dosha:', type);
-  alert('Redirecting to booking page… (connect your scheduler URL here)');
+  window.location.href = 'booking.html?dosha=' + encodeURIComponent(type);
 }
 
 function retakeQuiz() {

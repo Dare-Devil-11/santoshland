@@ -971,6 +971,14 @@ footer {
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .nav-mobile-btn { display: flex; }
+  nav.nav-open .nav-links {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--bg); padding: 24px 24px 32px;
+    gap: 4px; border-top: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  }
+  nav.nav-open .nav-cta { display: flex; margin: 8px 24px 0; }
 
   .dosha-strip        { grid-template-columns: 1fr; }
   .dosha-desc         { max-height: unset; opacity: 1; }
@@ -1534,7 +1542,7 @@ footer {
       Just clarity on what your body has been trying to tell you.
     </p>
 
-    <form class="cta-form reveal reveal-delay-3" action="#" method="post" novalidate aria-label="Free consultation form">
+    <form class="cta-form reveal reveal-delay-3" action="booking.html" method="get" novalidate aria-label="Free consultation form">
       <label for="cta-email" class="sr-only">Email address</label>
       <input
         type="email"
@@ -1602,17 +1610,17 @@ footer {
         <h4>Company</h4>
         <a href="about.html">About Santoshland</a>
         <a href="about.html">Our Practitioners</a>
-        <a href="#">Testimonials</a>
-        <a href="#">Contact</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="booking.html">Contact</a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 Santoshland LLC. All rights reserved.</p>
+      <p>&copy; 2026 Santoshland LLC. All rights reserved.</p>
       <div style="display:flex;gap:24px">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Disclaimer</a>
+        <a href="booking.html">Privacy Policy</a>
+        <a href="booking.html">Terms of Service</a>
+        <a href="booking.html">Disclaimer</a>
       </div>
     </div>
   </div>
@@ -1636,6 +1644,21 @@ footer {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // ── Mobile nav toggle ─────────────────────────────
+  const mobileBtn = document.getElementById('mobile-btn');
+  if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('nav-open');
+      mobileBtn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) {
+        nav.classList.remove('nav-open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   // ── Hero parallax (CSS transform, not scroll-jacking) ──
   const heroBg = document.getElementById('hero-bg');
