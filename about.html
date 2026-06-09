@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Santoshland Ayurvedic Wellness</title>
+<meta name="description" content="Santoshland was founded on one belief: your body already knows how to heal. Meet the team, discover our philosophy, and learn why 500+ clients have found their root cause here.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Schema: Organization + AboutPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://santoshland.com/#organization",
+      "name": "Santoshland",
+      "url": "https://santoshland.com",
+      "description": "Personalized Ayurvedic wellness rooted in 5,000 years of wisdom.",
+      "foundingDate": "2023",
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Priya Santosh",
+        "jobTitle": "Ayurvedic Practitioner & Founder",
+        "description": "NAMA-certified Ayurvedic Practitioner, Clinical Herbalist, and Panchakarma Specialist with over a decade of practice."
+      }
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://santoshland.com/about#webpage",
+      "url": "https://santoshland.com/about",
+      "name": "About — Santoshland Ayurvedic Wellness",
+      "description": "Our story, philosophy, and the team behind your healing journey.",
+      "isPartOf": { "@id": "https://santoshland.com/#organization" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://santoshland.com" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://santoshland.com/about" }
+        ]
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+/* ── Reset & Custom Properties ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink:      #F48CB4;
+  --pink-d:    #d4689a;
+  --gold:      #C8860A;
+  --gold-l:    #e8a832;
+  --dark:      #1A0F0A;
+  --dark-2:    #251710;
+  --dark-3:    #321f14;
+  --cream:     #FDF6EE;
+  --cream-2:   #F5EDE2;
+  --mahogany:  #2C1810;
+  --taupe:     #7A5C4A;
+  --border:    rgba(200,134,10,.18);
+  --ff-head:   'Lora', Georgia, serif;
+  --ff-body:   'Raleway', system-ui, sans-serif;
+  --ease-out:  cubic-bezier(.16,1,.3,1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  color: var(--mahogany);
+  background: var(--cream);
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font: inherit; }
+
+/* ── Scroll-reveal ───────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.reveal-right.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1; transform: none; transition: none;
+  }
+}
+
+/* ── Shared button styles ────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 3px;
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: all .25s var(--ease-out);
+  cursor: pointer;
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+}
+.btn-gold:hover { background: var(--gold-l); transform: translateY(-2px); }
+.btn-gold-outline {
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+.btn-gold-outline:hover {
+  background: var(--gold);
+  color: var(--dark);
+  transform: translateY(-2px);
+}
+
+/* ── Nav ──────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 32px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .35s, backdrop-filter .35s, box-shadow .35s;
+}
+.nav.scrolled {
+  background: rgba(26,15,10,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(200,134,10,.2);
+}
+.nav-logo {
+  font-family: var(--ff-head);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: .02em;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-links a {
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.78);
+  transition: color .2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--gold); }
+.nav-cta {
+  padding: 10px 22px;
+  border: 1.5px solid var(--gold);
+  border-radius: 3px;
+  color: var(--gold) !important;
+  font-size: 13px !important;
+  letter-spacing: .1em !important;
+  transition: background .2s, color .2s !important;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--dark) !important;
+}
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: rgba(255,255,255,.8);
+  transition: transform .3s, opacity .3s;
+}
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(26,15,10,.97);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s var(--ease-out);
+  }
+  .nav-links.open { max-height: 400px; }
+  .nav-links a {
+    display: block;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(200,134,10,.12);
+    font-size: 15px;
+  }
+  .nav-cta { margin: 16px 24px; display: block; text-align: center; }
+}
+
+/* ── Section helpers ─────────────────────────────────────────────── */
+.section-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-label.center { text-align: center; }
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-title.light { color: var(--cream); }
+.section-title.dark  { color: var(--mahogany); }
+.section-title.center { text-align: center; }
+
+/* ── Hero — Split Layout ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0;
+  padding-top: 72px;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding-top: 72px;
+  }
+}
+.hero-left {
+  padding: 80px 60px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+@media (max-width: 1024px) { .hero-left { padding: 60px 40px 60px 40px; } }
+@media (max-width: 768px)  { .hero-left { padding: 60px 24px 40px; order: 2; } }
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 6px 14px;
+  border: 1px solid rgba(200,134,10,.35);
+  border-radius: 2px;
+  align-self: flex-start;
+}
+.hero-left h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.15;
+}
+.hero-left h1 em { font-style: italic; color: var(--gold); }
+.hero-left p {
+  font-size: 1.05rem;
+  color: rgba(253,246,238,.65);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 480px;
+}
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+  background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 100%);
+  min-height: 100%;
+  position: relative;
+}
+@media (max-width: 768px) { .hero-right { padding: 40px 24px; order: 1; min-height: 300px; } }
+
+/* Mandala SVG container */
+.mandala-wrap {
+  width: min(380px, 90vw);
+  height: min(380px, 90vw);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mandala-wrap svg {
+  width: 100%;
+  height: 100%;
+  animation: mandalaSpin 60s linear infinite;
+}
+@keyframes mandalaSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandala-wrap svg { animation: none; }
+}
+
+/* ── Founder Story ───────────────────────────────────────────────── */
+.founder-section {
+  padding: 96px 24px;
+  background: var(--cream);
+}
+.founder-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .founder-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+.founder-photo-col { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.founder-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 8px rgba(200,134,10,.08), 0 0 0 16px rgba(200,134,10,.04);
+}
+.founder-photo svg { width: 90px; height: 90px; opacity: .35; }
+.founder-name {
+  font-family: var(--ff-head);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--mahogany);
+  text-align: center;
+}
+.founder-title {
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  text-align: center;
+}
+.founder-certs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.founder-cert-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--taupe);
+  padding: 7px 12px;
+  background: var(--cream-2);
+  border: 1px solid rgba(200,134,10,.2);
+  border-radius: 3px;
+}
+.founder-cert-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+.founder-story h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--mahogany);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.founder-story h2 em { font-style: italic; color: var(--gold); }
+.founder-story .eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: block;
+}
+.founder-story p {
+  font-size: .97rem;
+  color: var(--taupe);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.founder-story p:last-child { margin-bottom: 0; }
+.founder-story p strong { color: var(--mahogany); font-weight: 600; }
+
+/* ── Philosophy Pillars ──────────────────────────────────────────── */
+.philosophy-section {
+  padding: 96px 24px;
+  background: var(--dark-2);
+}
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) { .philosophy-grid { grid-template-columns: 1fr; } }
+.pillar {
+  padding: 40px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--dark-3);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform .3s var(--ease-out), border-color .3s;
+}
+.pillar:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,134,10,.45);
+}
+.pillar-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(200,134,10,.1);
+  flex-shrink: 0;
+}
+.pillar-icon svg { width: 28px; height: 28px; }
+.pillar-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .6;
+}
+.pillar-name {
+  font-family: var(--ff-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.3;
+}
+.pillar-desc {
+  font-size: .9rem;
+  color: rgba(253,246,238,.58);
+  line-height: 1.7;
+}
+
+/* ── Stats Bar ──────────────────────────────────────────────────── */
+.stats-section {
+  padding: 72px 24px;
+  background: var(--dark-3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stats-row {
+  display: flex;
+  gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.stat-item {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px;
+  position: relative;
+}
+.stat-item + .stat-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: rgba(200,134,10,.2);
+}
+@media (max-width: 600px) {
+  .stats-row { gap: 8px; }
+  .stat-item + .stat-item::before { display: none; }
+  .stat-item { flex: 1 1 45%; }
+}
+.stat-num {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(253,246,238,.5);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ── Approach Timeline ───────────────────────────────────────────── */
+.timeline-section {
+  padding: 96px 24px;
+  background: var(--cream);
+}
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+/* Vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 28px;
+  bottom: 28px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), var(--pink), var(--gold));
+  opacity: .3;
+}
+@media (max-width: 768px) { .timeline::before { left: 22px; } }
+.timeline-item {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 0 0 40px;
+  position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.tl-dot svg { width: 24px; height: 24px; }
+.tl-body { padding-top: 12px; }
+.tl-step {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: block;
+}
+.tl-title {
+  font-family: var(--ff-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--mahogany);
+  margin-bottom: 8px;
+}
+.tl-desc {
+  font-size: .9rem;
+  color: var(--taupe);
+  line-height: 1.7;
+}
+
+/* ── Credentials ──────────────────────────────────────────────────── */
+.credentials-section {
+  padding: 80px 24px;
+  background: var(--dark-2);
+}
+.credentials-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 768px) { .credentials-inner { grid-template-columns: 1fr; } }
+.cred-card {
+  padding: 32px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--dark-3);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  align-items: center;
+  transition: border-color .3s, transform .3s var(--ease-out);
+}
+.cred-card:hover {
+  border-color: rgba(200,134,10,.45);
+  transform: translateY(-4px);
+}
+.cred-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(200,134,10,.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.cred-icon svg { width: 26px; height: 26px; }
+.cred-name {
+  font-family: var(--ff-head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.3;
+}
+.cred-body {
+  font-size: .83rem;
+  color: rgba(253,246,238,.5);
+  line-height: 1.6;
+}
+.cred-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 3px 10px;
+  border: 1px solid rgba(200,134,10,.35);
+  border-radius: 2px;
+}
+
+/* ── CTA ─────────────────────────────────────────────────────────── */
+.cta-section {
+  padding: 96px 24px;
+  background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark) 60%, var(--dark-2) 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,140,180,.07) 0%, transparent 65%);
+  top: 50%; left: 30%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,134,10,.09) 0%, transparent 65%);
+  top: 50%; left: 70%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-section h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--cream);
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.cta-section h2 em { font-style: italic; color: var(--pink); }
+.cta-section p {
+  font-size: 1rem;
+  color: rgba(253,246,238,.6);
+  max-width: 460px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(200,134,10,.15);
+  padding: 40px 32px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-logo {
+  font-family: var(--ff-head);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+}
+.footer-copy {
+  font-size: .82rem;
+  color: rgba(253,246,238,.38);
+  letter-spacing: .04em;
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────────── -->
+<nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Santoshland home">Santoshland</a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="quiz.html">Dosha Quiz</a></li>
+    <li><a href="about.html" class="active" aria-current="page">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="booking.html" class="nav-cta btn">Book Free Consult</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── Hero — Split Layout ──────────────────────────────────────── -->
+<section class="hero" id="top" aria-label="About hero">
+
+  <div class="hero-left reveal-left">
+    <span class="hero-eyebrow">Our Story</span>
+    <h1>Where Ancient Wisdom<br>Meets <em>Modern Living</em></h1>
+    <p>Santoshland was founded on one belief: your body already knows how to heal — it just needs the right conditions. We're here to provide them.</p>
+    <div>
+      <a href="#founder" class="btn btn-gold-outline">Meet the Founder</a>
+    </div>
+  </div>
+
+  <!-- Decorative mandala SVG — pink + gold -->
+  <div class="hero-right reveal-right">
+    <div class="mandala-wrap" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="200" cy="200" r="190" stroke="#C8860A" stroke-width="0.8" opacity=".25"/>
+        <circle cx="200" cy="200" r="180" stroke="#F48CB4" stroke-width="0.5" stroke-dasharray="4 8" opacity=".3"/>
+
+        <!-- 8-petal outer lotus -->
+        <g opacity=".45">
+          <path d="M200 20 C200 20 176 80 200 110 C224 80 200 20 200 20Z" fill="none" stroke="#C8860A" stroke-width="1.2"/>
+          <path d="M200 380 C200 380 176 320 200 290 C224 320 200 380 200 380Z" fill="none" stroke="#C8860A" stroke-width="1.2"/>
+          <path d="M20 200 C20 200 80 176 110 200 C80 224 20 200 20 200Z" fill="none" stroke="#C8860A" stroke-width="1.2"/>
+          <path d="M380 200 C380 200 320 176 290 200 C320 224 380 200 380 200Z" fill="none" stroke="#C8860A" stroke-width="1.2"/>
+          <path d="M57 57 C57 57 100 105 117 130 C142 105 120 65 57 57Z" fill="none" stroke="#F48CB4" stroke-width="1"/>
+          <path d="M343 57 C343 57 300 105 283 130 C258 105 280 65 343 57Z" fill="none" stroke="#F48CB4" stroke-width="1"/>
+          <path d="M57 343 C57 343 100 295 117 270 C142 295 120 335 57 343Z" fill="none" stroke="#F48CB4" stroke-width="1"/>
+          <path d="M343 343 C343 343 300 295 283 270 C258 295 280 335 343 343Z" fill="none" stroke="#F48CB4" stroke-width="1"/>
+        </g>
+
+        <!-- Middle ring + geometric -->
+        <circle cx="200" cy="200" r="130" stroke="#C8860A" stroke-width="0.7" stroke-dasharray="3 6" opacity=".3"/>
+        <circle cx="200" cy="200" r="110" stroke="#F48CB4" stroke-width="0.6" opacity=".2"/>
+
+        <!-- 12-pointed star -->
+        <g opacity=".35">
+          <path d="M200 90 L208 150 L260 120 L220 165 L280 175 L220 195 L260 245 L205 220 L210 280 L190 225 L150 265 L175 210 L115 220 L170 195 L120 165 L178 170 L140 120 L192 150 Z" fill="none" stroke="#C8860A" stroke-width="0.9"/>
+        </g>
+
+        <!-- Inner 6-petal lotus -->
+        <g opacity=".6">
+          <path d="M200 130 C200 130 182 158 200 170 C218 158 200 130 200 130Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M200 270 C200 270 182 242 200 230 C218 242 200 270 200 270Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M130 200 C130 200 158 182 170 200 C158 218 130 200 130 200Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M270 200 C270 200 242 182 230 200 C242 218 270 200 270 200Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M148 148 C148 148 168 173 172 185 C185 173 180 152 148 148Z" fill="none" stroke="#F48CB4" stroke-width="1.2"/>
+          <path d="M252 148 C252 148 232 173 228 185 C215 173 220 152 252 148Z" fill="none" stroke="#F48CB4" stroke-width="1.2"/>
+          <path d="M148 252 C148 252 168 227 172 215 C185 227 180 248 148 252Z" fill="none" stroke="#F48CB4" stroke-width="1.2"/>
+          <path d="M252 252 C252 252 232 227 228 215 C215 227 220 248 252 252Z" fill="none" stroke="#F48CB4" stroke-width="1.2"/>
+        </g>
+
+        <!-- Inner circle details -->
+        <circle cx="200" cy="200" r="60" stroke="#C8860A" stroke-width="0.8" opacity=".4"/>
+        <circle cx="200" cy="200" r="45" stroke="#F48CB4" stroke-width="0.6" opacity=".35"/>
+
+        <!-- Central lotus -->
+        <g opacity=".8">
+          <path d="M200 160 C200 160 188 178 200 185 C212 178 200 160 200 160Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M200 240 C200 240 188 222 200 215 C212 222 200 240 200 240Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M160 200 C160 200 178 188 185 200 C178 212 160 200 160 200Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M240 200 C240 200 222 188 215 200 C222 212 240 200 240 200Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M172 172 C172 172 184 187 185 193 C191 187 188 175 172 172Z" fill="none" stroke="#F48CB4" stroke-width="1.3"/>
+          <path d="M228 172 C228 172 216 187 215 193 C209 187 212 175 228 172Z" fill="none" stroke="#F48CB4" stroke-width="1.3"/>
+          <path d="M172 228 C172 228 184 213 185 207 C191 213 188 225 172 228Z" fill="none" stroke="#F48CB4" stroke-width="1.3"/>
+          <path d="M228 228 C228 228 216 213 215 207 C209 213 212 225 228 228Z" fill="none" stroke="#F48CB4" stroke-width="1.3"/>
+        </g>
+
+        <!-- Seed center -->
+        <circle cx="200" cy="200" r="10" fill="none" stroke="#C8860A" stroke-width="1.5" opacity=".9"/>
+        <circle cx="200" cy="200" r="5"  fill="#C8860A" opacity=".6"/>
+        <circle cx="200" cy="200" r="2"  fill="#F48CB4" opacity=".9"/>
+
+        <!-- Dot ring -->
+        <g opacity=".4">
+          <circle cx="200" cy="75"  r="2.5" fill="#C8860A"/>
+          <circle cx="200" cy="325" r="2.5" fill="#C8860A"/>
+          <circle cx="75"  cy="200" r="2.5" fill="#C8860A"/>
+          <circle cx="325" cy="200" r="2.5" fill="#C8860A"/>
+          <circle cx="119" cy="119" r="2"   fill="#F48CB4"/>
+          <circle cx="281" cy="119" r="2"   fill="#F48CB4"/>
+          <circle cx="119" cy="281" r="2"   fill="#F48CB4"/>
+          <circle cx="281" cy="281" r="2"   fill="#F48CB4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── Founder Story ─────────────────────────────────────────────── -->
+<section class="founder-section" id="founder" aria-label="Founder story">
+  <div class="founder-inner">
+
+    <!-- Photo column -->
+    <div class="founder-photo-col reveal">
+      <div class="founder-photo" role="img" aria-label="Dr. Priya Santosh founder photo placeholder">
+        <!-- Lotus placeholder inside circle -->
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M50 80 C50 80 28 62 28 42 C28 28 38 20 50 26 C62 20 72 28 72 42 C72 62 50 80 50 80Z" fill="none" stroke="#C8860A" stroke-width="2"/>
+          <path d="M50 80 C38 60 18 50 26 34 C32 22 50 26 50 26" fill="none" stroke="#C8860A" stroke-width="1.2" opacity=".6"/>
+          <path d="M50 80 C62 60 82 50 74 34 C68 22 50 26 50 26" fill="none" stroke="#C8860A" stroke-width="1.2" opacity=".6"/>
+          <circle cx="50" cy="45" r="6" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <circle cx="50" cy="45" r="2" fill="#C8860A" opacity=".5"/>
+        </svg>
+      </div>
+      <p class="founder-name">Dr. Priya Santosh</p>
+      <p class="founder-title">Founder &amp; Lead Practitioner</p>
+
+      <!-- Cert pills -->
+      <div class="founder-certs">
+        <div class="founder-cert-pill">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#C8860A" stroke-width="1.2"/><path d="M4.5 7L6 8.5L9.5 5" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          NAMA Certified Practitioner
+        </div>
+        <div class="founder-cert-pill">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#C8860A" stroke-width="1.2"/><path d="M4.5 7L6 8.5L9.5 5" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Clinical Herbalist
+        </div>
+        <div class="founder-cert-pill">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#C8860A" stroke-width="1.2"/><path d="M4.5 7L6 8.5L9.5 5" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Panchakarma Specialist
+        </div>
+      </div>
+    </div>
+
+    <!-- Story text -->
+    <div class="founder-story reveal" style="transition-delay:.15s">
+      <span class="eyebrow">The Founder's Story</span>
+      <h2>She grew up with <em>ancient wisdom</em>.<br>Western medicine left her unheard.</h2>
+
+      <p>Priya Santosh was born into an Indian household where the medicine cabinet held tulsi, ashwagandha, and triphala before it held anything from a pharmacy. Her grandmother made oil infusions from scratch. Her mother's kitchen was her first pharmacy. Ayurveda wasn't a lifestyle trend — it was simply how her family lived.</p>
+
+      <p>In her twenties, Priya entered the Western medical world — first as a patient, then as a student. She was bright, driven, and deeply curious. But something was missing. <strong>The system was excellent at labeling what was wrong. It was less interested in why.</strong> Patients arrived with chronic fatigue, skin flare-ups, hormonal imbalances, and persistent anxiety — and left with a prescription that addressed the surface, not the source.</p>
+
+      <p>After years of watching people cycle through treatments without resolution, Priya returned to the tradition she had grown up with. She completed her Ayurvedic Practitioner certification through NAMA — the National Ayurvedic Medical Association — and trained under master herbalists in both India and the United States. She added clinical herbalism and Panchakarma specialization to her practice, weaving together the precision of modern wellness science with the depth of traditional Ayurvedic protocol.</p>
+
+      <p>Santoshland — <em>"the land of contentment"</em> in Sanskrit — was born from that reunion. <strong>It is not a supplement shop, a wellness app, or a generic meal plan.</strong> It is a genuine, personalized healing practice built for people who have tried everything that treats the symptom and are now ready to address the root.</p>
+
+      <p>Today, Priya and the Santoshland team have guided more than 500 clients through their healing journeys. Some came with autoimmune flares. Others with lifelong digestive chaos, chronic stress, or hormonal fog. <strong>Every single one received a protocol that was built entirely around them — their dosha, their history, their season of life.</strong> No two clients have ever received the same plan. That is not a selling point. It is the point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Philosophy Pillars ─────────────────────────────────────────── -->
+<section class="philosophy-section" id="philosophy" aria-label="Our philosophy">
+  <span class="section-label center reveal">What We Stand For</span>
+  <h2 class="section-title light center reveal">Three pillars. One <em>unshakeable</em> philosophy.</h2>
+  <p style="text-align:center;color:rgba(253,246,238,.55);max-width:500px;margin:0 auto 60px;font-size:.97rem;line-height:1.7;" class="reveal">Everything we do flows from these beliefs. Not as marketing copy — as operating principles.</p>
+
+  <div class="philosophy-grid">
+
+    <div class="pillar reveal">
+      <div class="pillar-icon" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none">
+          <path d="M14 4 C14 4 6 9 6 15 C6 19.4 9.6 23 14 23 C18.4 23 22 19.4 22 15 C22 9 14 4 14 4Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M10 17 C10 17 11 20 14 20 C17 20 18 17 18 17" fill="none" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M14 9 L14 15" stroke="#C8860A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+          <path d="M6 8 L4 6 M22 8 L24 6 M14 2 L14 4" stroke="#F48CB4" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </div>
+      <span class="pillar-num">Pillar 01</span>
+      <h3 class="pillar-name">Root Cause, Not Band-Aids</h3>
+      <p class="pillar-desc">Symptoms are signals. We follow them inward until we find the imbalance that is generating them. Treating the surface without addressing the source is just delay. We do not delay.</p>
+    </div>
+
+    <div class="pillar reveal" style="transition-delay:.1s">
+      <div class="pillar-icon" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="9" r="5" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M6 24 C6 19.6 9.6 16 14 16 C18.4 16 22 19.6 22 24" fill="none" stroke="#C8860A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M4 10 C4 10 6 8 8 9 M24 10 C24 10 22 8 20 9" stroke="#F48CB4" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+          <circle cx="14" cy="9" r="2" fill="#C8860A" opacity=".4"/>
+        </svg>
+      </div>
+      <span class="pillar-num">Pillar 02</span>
+      <h3 class="pillar-name">Your Body is Unique</h3>
+      <p class="pillar-desc">No two doshas are the same. No two protocols are either. We do not believe in generic wellness. We believe in the specific, particular, irreducible you — and we build your program from there.</p>
+    </div>
+
+    <div class="pillar reveal" style="transition-delay:.2s">
+      <div class="pillar-icon" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none">
+          <path d="M6 22 C6 22 8 14 14 14 C20 14 22 22 22 22" fill="none" stroke="#C8860A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 6 C14 6 10 9 10 12 C10 14 11.8 15 14 15 C16.2 15 18 14 18 12 C18 9 14 6 14 6Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M4 6 L8 10 M24 6 L20 10" stroke="#F48CB4" stroke-width="1.1" stroke-linecap="round" opacity=".6"/>
+          <circle cx="14" cy="11" r="2" fill="#C8860A" opacity=".4"/>
+        </svg>
+      </div>
+      <span class="pillar-num">Pillar 03</span>
+      <h3 class="pillar-name">Ancient + Modern</h3>
+      <p class="pillar-desc">5,000 years of clinical wisdom does not need validation — but it does benefit from integration. We pair traditional Ayurvedic protocols with modern wellness science to give you the fullest picture of your health.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Stats Bar ─────────────────────────────────────────────────── -->
+<section class="stats-section" aria-label="By the numbers">
+  <div class="stats-row">
+    <div class="stat-item reveal">
+      <span class="stat-num">500<span style="color:var(--pink);font-size:.6em">+</span></span>
+      <span class="stat-label">Clients Guided</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.08s">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Core Doshas Mastered</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.16s">
+      <span class="stat-num">5,000</span>
+      <span class="stat-label">Years of Wisdom</span>
+    </div>
+    <div class="stat-item reveal" style="transition-delay:.24s">
+      <span class="stat-num">97<span style="color:var(--pink);font-size:.6em">%</span></span>
+      <span class="stat-label">Client Satisfaction</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Approach Timeline ─────────────────────────────────────────── -->
+<section class="timeline-section" id="approach" aria-label="Our approach">
+  <span class="section-label reveal">How We Work</span>
+  <h2 class="section-title dark reveal">Our approach in <em>five steps</em>.</h2>
+  <p style="color:var(--taupe);font-size:.97rem;line-height:1.7;max-width:480px;margin:0 0 60px;" class="reveal">Structured. Personal. No shortcuts. This is how every client relationship unfolds — from first conversation to lasting results.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4 C12 4 7 7.5 7 11.5 C7 14.5 9 17 12 17 C15 17 17 14.5 17 11.5 C17 7.5 12 4 12 4Z" fill="none" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M9 13 C9 13 10 15 12 15 C14 15 15 13 15 13" fill="none" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tl-body">
+        <span class="tl-step">Step One</span>
+        <h3 class="tl-title">Listen Deeply</h3>
+        <p class="tl-desc">Your first consultation is unhurried. We want the full picture — not just your primary complaint. Sleep, digestion, stress patterns, relationships, seasons that affect you most. Everything is relevant to your dosha and your protocol.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="transition-delay:.1s">
+      <div class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8" stroke="#C8860A" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <path d="M8 12 H16 M12 8 V16" stroke="#C8860A" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tl-body">
+        <span class="tl-step">Step Two</span>
+        <h3 class="tl-title">Assess Holistically</h3>
+        <p class="tl-desc">We evaluate your dosha constitution, current imbalances (vikruti), lifestyle, diet, and seasonal context. The assessment is layered — physical, mental, and energetic — because that is how Ayurveda sees the whole person.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="transition-delay:.15s">
+      <div class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="5" width="16" height="14" rx="2" stroke="#C8860A" stroke-width="1.5"/>
+          <path d="M8 10 H16 M8 14 H13" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M14 16 L16 18 L20 14" stroke="#F48CB4" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tl-body">
+        <span class="tl-step">Step Three</span>
+        <h3 class="tl-title">Personalize Fully</h3>
+        <p class="tl-desc">Your protocol is built from scratch. Herbal formulations, dietary adjustments, daily routine (dinacharya), breathwork, and seasonal modifications. Nothing is copied from a template. Your plan exists for no one else.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="transition-delay:.2s">
+      <div class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4 L14 9 L20 9 L15 13 L17 19 L12 15 L7 19 L9 13 L4 9 L10 9 Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+        </svg>
+      </div>
+      <div class="tl-body">
+        <span class="tl-step">Step Four</span>
+        <h3 class="tl-title">Support Consistently</h3>
+        <p class="tl-desc">Healing is not linear. Weekly or bi-weekly check-ins let us track your response, adjust your protocol as the season or your body shifts, and make sure you feel genuinely supported — not just sold a product and left alone.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="transition-delay:.25s">
+      <div class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12 L10 17 L19 8" stroke="#C8860A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="9" stroke="#C8860A" stroke-width="1.2" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="tl-body">
+        <span class="tl-step">Step Five</span>
+        <h3 class="tl-title">Celebrate Your Healing</h3>
+        <p class="tl-desc">Lasting results. Not a dependency on supplements or ongoing consults forever — but the knowledge and tools to maintain your balance independently. That is the Ayurvedic goal: self-sufficiency through self-knowledge.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Credentials ────────────────────────────────────────────────── -->
+<section class="credentials-section" id="credentials" aria-label="Credentials and certifications">
+  <span class="section-label center reveal" style="text-align:center;display:block;">Credentials</span>
+  <h2 class="section-title light center reveal">Trained. Certified. <em>Accountable.</em></h2>
+  <p style="text-align:center;color:rgba(253,246,238,.52);max-width:480px;margin:0 auto 56px;font-size:.95rem;line-height:1.7;" class="reveal">Every practitioner at Santoshland holds recognized credentials in their discipline.</p>
+
+  <div class="credentials-inner">
+
+    <div class="cred-card reveal">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 26 26" fill="none">
+          <circle cx="13" cy="13" r="9.5" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M9 13 L11.5 15.5 L17 10" stroke="#C8860A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13 3.5 L13 1 M13 25 L13 22.5 M3.5 13 L1 13 M25 13 L22.5 13" stroke="#C8860A" stroke-width="1" stroke-linecap="round" opacity=".35"/>
+        </svg>
+      </div>
+      <span class="cred-badge">NAMA Certified</span>
+      <h3 class="cred-name">Ayurvedic Practitioner</h3>
+      <p class="cred-body">Certified through the National Ayurvedic Medical Association (NAMA) — the governing body for professional Ayurvedic practice in the United States.</p>
+    </div>
+
+    <div class="cred-card reveal" style="transition-delay:.1s">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 26 26" fill="none">
+          <path d="M13 3 C13 3 5 8 5 14 C5 18.4 8.6 22 13 22 C17.4 22 21 18.4 21 14 C21 8 13 3 13 3Z" fill="none" stroke="#C8860A" stroke-width="1.4"/>
+          <path d="M9.5 15 C9.5 15 10.5 18 13 18 C15.5 18 16.5 15 16.5 15" fill="none" stroke="#C8860A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M13 8 L13 13" stroke="#C8860A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </div>
+      <span class="cred-badge">AHG Member</span>
+      <h3 class="cred-name">Clinical Herbalist</h3>
+      <p class="cred-body">Trained in the clinical application of medicinal herbs for systemic imbalances. Member of the American Herbalists Guild, specializing in Ayurvedic formulation.</p>
+    </div>
+
+    <div class="cred-card reveal" style="transition-delay:.2s">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 26 26" fill="none">
+          <path d="M4 18 C4 18 6 10 13 10 C20 10 22 18 22 18" fill="none" stroke="#C8860A" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M7 18 C7 15 9.5 12 13 12 C16.5 12 19 15 19 18" fill="none" stroke="#F48CB4" stroke-width="1.1" stroke-linecap="round" opacity=".6"/>
+          <circle cx="13" cy="7" r="3.5" stroke="#C8860A" stroke-width="1.4"/>
+          <circle cx="13" cy="7" r="1.2" fill="#C8860A" opacity=".5"/>
+        </svg>
+      </div>
+      <span class="cred-badge">Kerala Trained</span>
+      <h3 class="cred-name">Panchakarma Specialist</h3>
+      <p class="cred-body">Trained in traditional Panchakarma detoxification therapies in Kerala, India. Qualified to administer and supervise multi-day cleanse and rejuvenation programs.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="cta-section" aria-label="Call to action">
+  <div class="cta-inner reveal">
+    <h2>Start your <em>healing journey</em> today.</h2>
+    <p>Your first consultation is free, unhurried, and without obligation. It begins with one honest conversation.</p>
+    <a href="#" class="btn btn-gold">Book Your Free Consultation</a>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <span class="footer-logo">Santoshland</span>
+  <span class="footer-copy">&copy; 2025 Santoshland. All rights reserved.</span>
+</footer>
+
+<script>
+// ── Nav scroll behavior ───────────────────────────────────────────
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 24);
+}, { passive: true });
+
+// ── Hamburger menu ────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+// ── Scroll-reveal (IntersectionObserver) ─────────────────────────
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+} else {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    el.classList.add('visible');
+  });
+}
+
+// ── Active nav highlighting on scroll ────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navAnchorLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+  });
+  navAnchorLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

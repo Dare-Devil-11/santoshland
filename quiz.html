@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Your Dosha — Santoshland Ayurvedic Wellness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS CUSTOM PROPERTIES ── */
+    :root {
+      --pink: #F48CB4;
+      --gold: #C8860A;
+      --dark: #1A0F0A;
+      --cream: #FDF6EE;
+      --vata-color: #7C5CBF;
+      --vata-light: #EDE5FF;
+      --pitta-color: #C94B1A;
+      --pitta-light: #FFE8DD;
+      --kapha-color: #1A8A7A;
+      --kapha-light: #D6F5F0;
+      --card-bg: #2A1A12;
+      --card-border: rgba(200, 134, 10, 0.2);
+      --text-muted: rgba(253, 246, 238, 0.6);
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── BACKGROUND TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(196, 134, 10, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 90%, rgba(244, 140, 180, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT WRAPPER ── */
+    #app {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── LOGO / BRAND HEADER ── */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .brand-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTION SCREENS ── */
+    .screen {
+      width: 100%;
+      max-width: 680px;
+      display: none;
+      animation: fadeSlideIn 0.5s var(--transition) both;
+    }
+
+    .screen.active { display: block; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── INTRO SCREEN ── */
+    .intro-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: clamp(2rem, 6vw, 3.5rem);
+      text-align: center;
+    }
+
+    .intro-symbol {
+      font-size: 3.5rem;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .intro-card h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--cream);
+    }
+
+    .intro-card h1 span { color: var(--gold); }
+
+    .intro-card p {
+      font-size: clamp(0.92rem, 2.5vw, 1.05rem);
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .intro-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .intro-meta span {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── BUTTON SYSTEM ── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #E8A020);
+      color: var(--dark);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 134, 10, 0.4);
+    }
+
+    .btn-pink {
+      background: linear-gradient(135deg, var(--pink), #E87AAA);
+      color: #fff;
+    }
+
+    .btn-pink:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(244, 140, 180, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(253, 246, 238, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cream);
+      background: rgba(253, 246, 238, 0.05);
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      margin-bottom: 1.8rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .progress-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .progress-count {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .progress-track {
+      height: 4px;
+      background: rgba(253, 246, 238, 0.1);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), #E8A020);
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── QUESTION CARD ── */
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: clamp(1.8rem, 5vw, 3rem);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .question-category {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .question-text {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.1rem, 3vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ANSWER OPTIONS ── */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.3rem;
+      background: rgba(253, 246, 238, 0.03);
+      border: 1.5px solid rgba(253, 246, 238, 0.12);
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.94rem;
+      color: var(--cream);
+      text-align: left;
+      transition: all 0.25s ease;
+      line-height: 1.4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(244, 140, 180, 0.08), transparent);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .option-btn:hover {
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+
+    .option-btn:hover::before { opacity: 1; }
+
+    .option-btn.selected {
+      background: var(--pink);
+      border-color: var(--pink);
+      color: #fff;
+    }
+
+    .option-btn.selected::before { opacity: 0; }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: rgba(253, 246, 238, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-top: 0.05rem;
+      transition: background 0.25s ease;
+    }
+
+    .option-btn:hover .option-letter {
+      background: rgba(244, 140, 180, 0.25);
+      color: #fff;
+    }
+
+    .option-btn.selected .option-letter {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Slide transition for questions */
+    .question-card.slide-out {
+      animation: slideOut 0.3s ease forwards;
+    }
+
+    .question-card.slide-in {
+      animation: slideIn 0.35s ease forwards;
+    }
+
+    @keyframes slideOut {
+      to { opacity: 0; transform: translateX(-30px); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── EMAIL GATE ── */
+    .gate-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: clamp(2rem, 6vw, 3.5rem);
+      text-align: center;
+    }
+
+    .gate-icon {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .gate-card h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .gate-card h2 span { color: var(--gold); }
+
+    .gate-card > p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 420px;
+      margin: 0 auto 2rem;
+    }
+
+    .gate-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      background: rgba(253, 246, 238, 0.05);
+      border: 1.5px solid rgba(253, 246, 238, 0.15);
+      border-radius: 12px;
+      color: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder { color: rgba(253, 246, 238, 0.3); }
+
+    .form-group input:focus {
+      border-color: var(--pink);
+    }
+
+    .form-group input.error {
+      border-color: #e74c3c;
+    }
+
+    .err-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: #e74c3c;
+      margin-top: 0.35rem;
+      padding-left: 0.25rem;
+    }
+
+    .err-msg.visible { display: block; }
+
+    .gate-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+
+    .gate-privacy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* ── RESULTS SCREEN ── */
+    #screen-results {
+      max-width: 760px;
+    }
+
+    .result-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .result-header {
+      padding: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      position: relative;
+    }
+
+    .result-header.vata  { background: linear-gradient(135deg, #4A2D8A 0%, #2A1560 100%); }
+    .result-header.pitta { background: linear-gradient(135deg, #8A2A0A 0%, #5A1505 100%); }
+    .result-header.kapha { background: linear-gradient(135deg, #0A5A4A 0%, #053530 100%); }
+
+    .result-symbol-wrap {
+      margin-bottom: 1.5rem;
+    }
+
+    .result-symbol-wrap svg {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 4px 20px rgba(255,255,255,0.15));
+    }
+
+    .dosha-badge {
+      display: inline-block;
+      padding: 0.3rem 1.1rem;
+      border-radius: 99px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .vata  .dosha-badge  { background: rgba(124, 92, 191, 0.4); color: #D6C8FF; border: 1px solid rgba(124,92,191,0.5); }
+    .pitta .dosha-badge  { background: rgba(201, 75, 26, 0.4);  color: #FFD4B8; border: 1px solid rgba(201,75,26,0.5); }
+    .kapha .dosha-badge  { background: rgba(26, 138, 122, 0.4); color: #B8F0E8; border: 1px solid rgba(26,138,122,0.5); }
+
+    .result-headline {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .result-subhead {
+      font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+      color: rgba(255,255,255,0.75);
+      max-width: 500px;
+      margin: 0 auto;
+      font-style: italic;
+      font-family: 'Lora', serif;
+    }
+
+    .result-body {
+      background: var(--card-bg);
+      padding: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    .result-section {
+      margin-bottom: 2.2rem;
+    }
+
+    .result-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .result-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--card-border);
+    }
+
+    .vata-accent  { color: var(--vata-color); }
+    .pitta-accent { color: var(--pitta-color); }
+    .kapha-accent { color: var(--kapha-color); }
+
+    /* Traits list */
+    .traits-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .traits-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--cream);
+    }
+
+    .trait-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .vata  .trait-dot { background: var(--vata-color); }
+    .pitta .trait-dot { background: var(--pitta-color); }
+    .kapha .trait-dot { background: var(--kapha-color); }
+
+    /* Imbalance signs */
+    .imbalance-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .imbalance-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.92rem;
+      color: rgba(253, 246, 238, 0.8);
+      padding: 0.7rem 1rem;
+      background: rgba(253, 246, 238, 0.03);
+      border-radius: 10px;
+      border-left: 3px solid;
+    }
+
+    .vata  .imbalance-list li { border-left-color: var(--vata-color); }
+    .pitta .imbalance-list li { border-left-color: var(--pitta-color); }
+    .kapha .imbalance-list li { border-left-color: var(--kapha-color); }
+
+    /* Recommendations */
+    .reco-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      counter-reset: reco;
+    }
+
+    .reco-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.92rem;
+      color: rgba(253, 246, 238, 0.85);
+      counter-increment: reco;
+    }
+
+    .reco-num {
+      flex-shrink: 0;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 0.05rem;
+    }
+
+    .vata  .reco-num { background: var(--vata-color); }
+    .pitta .reco-num { background: var(--pitta-color); }
+    .kapha .reco-num { background: var(--kapha-color); }
+
+    /* CTA section */
+    .result-cta {
+      text-align: center;
+      padding-top: 0.5rem;
+    }
+
+    .result-cta .btn {
+      font-size: 0.95rem;
+      padding: 1rem 2.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .vata-cta  .btn { background: linear-gradient(135deg, var(--vata-color), #6046A8); }
+    .pitta-cta .btn { background: linear-gradient(135deg, var(--pitta-color), #A83810); }
+    .kapha-cta .btn { background: linear-gradient(135deg, var(--kapha-color), #107060); }
+
+    .result-cta .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+    }
+
+    .retake-wrap {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-retake {
+      background: transparent;
+      border: 1.5px solid rgba(253, 246, 238, 0.2);
+      color: var(--text-muted);
+      border-radius: 50px;
+      padding: 0.65rem 1.8rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-retake:hover {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+
+    /* ── SCORE SUMMARY ── */
+    .score-strip {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .score-pill {
+      padding: 0.4rem 1rem;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .score-pill.vata-pill  { background: rgba(124,92,191,0.2); color: #B8A0FF; border: 1px solid rgba(124,92,191,0.3); }
+    .score-pill.pitta-pill { background: rgba(201,75,26,0.2);  color: #FFBB88; border: 1px solid rgba(201,75,26,0.3); }
+    .score-pill.kapha-pill { background: rgba(26,138,122,0.2); color: #88ECD8; border: 1px solid rgba(26,138,122,0.3); }
+
+    /* ── CONFETTI ── */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── DIVIDER ── */
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      margin: 1.2rem 0;
+      opacity: 0.5;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      #app { padding: 1.2rem 0.75rem 3rem; }
+      .traits-list { grid-template-columns: 1fr 1fr; }
+      .intro-meta { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div id="app">
+
+  <!-- BRAND HEADER -->
+  <header class="brand-header">
+    <div class="brand-name">Santoshland</div>
+    <div class="brand-tagline">5,000 years of wisdom, personalized for you</div>
+  </header>
+
+  <!-- ── SCREEN: INTRO ── -->
+  <section id="screen-intro" class="screen active">
+    <div class="intro-card">
+      <span class="intro-symbol">☽✦☾</span>
+      <h1>Discover Your <span>Dosha</span></h1>
+      <p>Ayurveda teaches that every person is born with a unique constitution — a blend of the five elements. Knowing your dosha is the first step toward lasting health, balance, and vitality.</p>
+      <div class="intro-meta">
+        <span>✦ 10 Questions</span>
+        <span>✦ 3 Minutes</span>
+        <span>✦ Personalized Results</span>
+      </div>
+      <button class="btn btn-gold" onclick="startQuiz()">Begin Your Journey</button>
+    </div>
+  </section>
+
+  <!-- ── SCREEN: QUIZ ── -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span class="progress-label">Your Dosha Reading</span>
+        <span class="progress-count" id="progress-count">1 / 10</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 10%"></div>
+      </div>
+    </div>
+
+    <div class="question-card" id="question-card">
+      <div class="question-category" id="q-category"></div>
+      <div class="question-text" id="q-text"></div>
+      <div class="options-list" id="q-options"></div>
+    </div>
+  </section>
+
+  <!-- ── SCREEN: EMAIL GATE ── -->
+  <section id="screen-gate" class="screen">
+    <div class="gate-card">
+      <span class="gate-icon">🌿</span>
+      <h2>Your Dosha is <span>Ready</span></h2>
+      <p>Enter your name and email to receive your personalized Ayurvedic profile — plus a free guide to balancing your dosha.</p>
+
+      <form class="gate-form" id="gate-form" novalidate onsubmit="submitGate(event)">
+        <div class="form-group">
+          <label for="gate-name">Your Name</label>
+          <input type="text" id="gate-name" name="name" placeholder="First name" autocomplete="given-name" />
+          <span class="err-msg" id="err-name">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+          <label for="gate-email">Email Address</label>
+          <input type="email" id="gate-email" name="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="err-msg" id="err-email">Please enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn btn-pink gate-submit">Reveal My Dosha</button>
+        <p class="gate-privacy">🔒 No spam. Unsubscribe anytime. Your privacy is sacred to us.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── SCREEN: RESULTS ── -->
+  <section id="screen-results" class="screen">
+
+    <!-- Score strip -->
+    <div class="score-strip" id="score-strip"></div>
+
+    <!-- Result card — populated by JS -->
+    <div class="result-card" id="result-card"></div>
+
+    <!-- Retake -->
+    <div class="retake-wrap">
+      <button class="btn-retake" onclick="retakeQuiz()">↺ Retake the Quiz</button>
+    </div>
+
+  </section>
+
+</div><!-- /#app -->
+
+<script>
+// ────────────────────────────────────────────────
+// DATA
+// ────────────────────────────────────────────────
+const QUESTIONS = [
+  {
+    category: "Body Type",
+    text: "Your body frame is:",
+    options: [
+      { letter: "A", text: "Slim, light, hard to gain weight", dosha: "V" },
+      { letter: "B", text: "Medium, athletic, muscular",        dosha: "P" },
+      { letter: "C", text: "Larger, sturdy, easy to gain weight", dosha: "K" }
+    ]
+  },
+  {
+    category: "Skin",
+    text: "Your skin tends to be:",
+    options: [
+      { letter: "A", text: "Dry, rough, or flaky",              dosha: "V" },
+      { letter: "B", text: "Oily, sensitive, prone to redness", dosha: "P" },
+      { letter: "C", text: "Thick, smooth, moist",              dosha: "K" }
+    ]
+  },
+  {
+    category: "Digestion",
+    text: "Your digestion is:",
+    options: [
+      { letter: "A", text: "Irregular, gassy, constipated at times", dosha: "V" },
+      { letter: "B", text: "Strong, sharp, can feel acidic or burning", dosha: "P" },
+      { letter: "C", text: "Slow, steady, can feel heavy after eating",  dosha: "K" }
+    ]
+  },
+  {
+    category: "Energy",
+    text: "Your energy levels are:",
+    options: [
+      { letter: "A", text: "Variable — bursts of energy followed by fatigue", dosha: "V" },
+      { letter: "B", text: "Intense and driven but can burn out",              dosha: "P" },
+      { letter: "C", text: "Steady and consistent, slow to start",            dosha: "K" }
+    ]
+  },
+  {
+    category: "Stress Response",
+    text: "When stressed, you tend to:",
+    options: [
+      { letter: "A", text: "Feel anxious, scattered, or overwhelmed",   dosha: "V" },
+      { letter: "B", text: "Feel irritable, frustrated, or critical",   dosha: "P" },
+      { letter: "C", text: "Withdraw, become stubborn, or shut down",   dosha: "K" }
+    ]
+  },
+  {
+    category: "Mind",
+    text: "Your mind works:",
+    options: [
+      { letter: "A", text: "Fast, creative, lots of ideas, hard to focus",   dosha: "V" },
+      { letter: "B", text: "Sharp, analytical, decisive, perfectionist",      dosha: "P" },
+      { letter: "C", text: "Calm, steady, thoughtful, sometimes slow",        dosha: "K" }
+    ]
+  },
+  {
+    category: "Sleep",
+    text: "Your sleep is:",
+    options: [
+      { letter: "A", text: "Light, interrupted, hard to fall asleep",              dosha: "V" },
+      { letter: "B", text: "Moderate — you fall asleep easily but wake if disturbed", dosha: "P" },
+      { letter: "C", text: "Deep and long — hard to wake up",                      dosha: "K" }
+    ]
+  },
+  {
+    category: "Appetite",
+    text: "Your appetite is:",
+    options: [
+      { letter: "A", text: "Irregular — sometimes forget to eat",          dosha: "V" },
+      { letter: "B", text: "Strong — get irritable when hungry",           dosha: "P" },
+      { letter: "C", text: "Consistent — not urgent but steady",           dosha: "K" }
+    ]
+  },
+  {
+    category: "Body Feel",
+    text: "Your joints and body feel:",
+    options: [
+      { letter: "A", text: "Cracking, stiff, light",          dosha: "V" },
+      { letter: "B", text: "Loose, flexible, warm",           dosha: "P" },
+      { letter: "C", text: "Well-lubricated, sometimes heavy", dosha: "K" }
+    ]
+  },
+  {
+    category: "Learning Style",
+    text: "Your learning style is:",
+    options: [
+      { letter: "A", text: "Quick to learn, quick to forget",        dosha: "V" },
+      { letter: "B", text: "Sharp focus, good retention",            dosha: "P" },
+      { letter: "C", text: "Slow to learn, excellent long-term memory", dosha: "K" }
+    ]
+  }
+];
+
+const RESULTS = {
+  V: {
+    type: "vata",
+    badge: "Vata Dosha",
+    headline: "You are Vata — The Air & Space Element",
+    subhead: "Creative, quick-minded, and full of ideas — but your nervous system craves grounding.",
+    symbol: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <path d="M40 10 C40 10, 55 25, 55 40 C55 55, 40 60, 40 70 C40 60, 25 55, 25 40 C25 25, 40 10, 40 10Z"
+            fill="none" stroke="#B8A0FF" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="40" cy="40" r="5" fill="#B8A0FF" opacity="0.8"/>
+      <circle cx="40" cy="20" r="2.5" fill="#B8A0FF" opacity="0.5"/>
+      <circle cx="55" cy="40" r="2.5" fill="#B8A0FF" opacity="0.5"/>
+      <circle cx="40" cy="60" r="2.5" fill="#B8A0FF" opacity="0.5"/>
+      <circle cx="25" cy="40" r="2.5" fill="#B8A0FF" opacity="0.5"/>
+    </svg>`,
+    traits: ["Creative and imaginative", "Quick to think and act", "Enthusiastic and energetic", "Adaptable to change", "Naturally intuitive"],
+    imbalances: [
+      { icon: "⟡", text: "Anxiety and racing thoughts" },
+      { icon: "⟡", text: "Dry skin and cracked lips" },
+      { icon: "⟡", text: "Irregular digestion or bloating" }
+    ],
+    recommendations: [
+      "Warm, nourishing meals — favor cooked root vegetables, ghee, and spiced herbal teas",
+      "Daily Abhyanga (warm sesame oil self-massage) to ground the nervous system",
+      "Consistent daily routine — wake, eat, and sleep at the same time every day"
+    ],
+    cta: "Book Your Free Vata Consultation"
+  },
+  P: {
+    type: "pitta",
+    badge: "Pitta Dosha",
+    headline: "You are Pitta — The Fire & Water Element",
+    subhead: "Ambitious, focused, and driven — but your inner fire needs cooling before it burns you.",
+    symbol: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <polygon points="40,12 62,54 18,54" fill="none" stroke="#FFBB88" stroke-width="2" stroke-linejoin="round"/>
+      <polygon points="40,68 18,26 62,26" fill="none" stroke="#FF8855" stroke-width="1.5" stroke-linejoin="round" opacity="0.6"/>
+      <circle cx="40" cy="40" r="5" fill="#FFBB88" opacity="0.85"/>
+    </svg>`,
+    traits: ["Ambitious and goal-oriented", "Sharp, analytical mind", "Natural leader and organizer", "Confident and decisive", "Passionate about excellence"],
+    imbalances: [
+      { icon: "⟡", text: "Inflammation, skin redness, or rashes" },
+      { icon: "⟡", text: "Irritability and short temper" },
+      { icon: "⟡", text: "Acid reflux or heartburn" }
+    ],
+    recommendations: [
+      "Cooling foods and herbs — cucumber, coconut water, coriander, and sweet ripe fruits",
+      "Reduce spicy, fermented, and overly salty foods — favor bitter greens and cooling teas",
+      "Build intentional rest into your schedule — Pitta burns bright but must recover"
+    ],
+    cta: "Book Your Free Pitta Consultation"
+  },
+  K: {
+    type: "kapha",
+    badge: "Kapha Dosha",
+    headline: "You are Kapha — The Earth & Water Element",
+    subhead: "Grounded, nurturing, and resilient — but your body needs movement and stimulation to thrive.",
+    symbol: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <path d="M40 14 L14 60 L66 60 Z" fill="none" stroke="#88ECD8" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="26" y="30" width="28" height="22" rx="3" fill="none" stroke="#55D4B8" stroke-width="1.5" opacity="0.7"/>
+      <circle cx="40" cy="40" r="5" fill="#88ECD8" opacity="0.85"/>
+    </svg>`,
+    traits: ["Steady, calm, and reliable", "Deeply nurturing and compassionate", "Excellent long-term memory", "Resilient and enduring strength", "Naturally patient and loving"],
+    imbalances: [
+      { icon: "⟡", text: "Weight gain and water retention" },
+      { icon: "⟡", text: "Sluggishness or lack of motivation" },
+      { icon: "⟡", text: "Congestion, mucus, or sinus issues" }
+    ],
+    recommendations: [
+      "Favor light, spicy, and warming foods — ginger, black pepper, bitter greens, legumes",
+      "Daily vigorous exercise — Kapha thrives with movement, heat, and physical challenge",
+      "Dry brushing (Garshana) before showering to stimulate lymphatic flow and energy"
+    ],
+    cta: "Book Your Free Kapha Consultation"
+  }
+};
+
+// ────────────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────────────
+let currentQ = 0;
+let answers = [];   // 'V', 'P', or 'K'
+let scores  = { V: 0, P: 0, K: 0 };
+let transitioning = false;
+
+// ────────────────────────────────────────────────
+// SCREEN MANAGEMENT
+// ────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('screen-' + id);
+  el.classList.add('active');
+  el.style.animation = 'none';
+  // force reflow
+  void el.offsetHeight;
+  el.style.animation = '';
+}
+
+// ────────────────────────────────────────────────
+// QUIZ FLOW
+// ────────────────────────────────────────────────
+function startQuiz() {
+  currentQ = 0;
+  answers = [];
+  scores  = { V: 0, P: 0, K: 0 };
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion(direction = 'right') {
+  const card = document.getElementById('question-card');
+  const q = QUESTIONS[currentQ];
+
+  // Update progress
+  const pct = ((currentQ + 1) / QUESTIONS.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-count').textContent = (currentQ + 1) + ' / ' + QUESTIONS.length;
+
+  // Slide out
+  if (direction !== 'init') {
+    card.classList.add('slide-out');
+  }
+
+  setTimeout(() => {
+    // Populate
+    document.getElementById('q-category').textContent = q.category;
+    document.getElementById('q-text').textContent = q.text;
+
+    const optList = document.getElementById('q-options');
+    optList.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.setAttribute('aria-label', opt.letter + ': ' + opt.text);
+      btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span>${opt.text}</span>`;
+      btn.addEventListener('click', () => selectAnswer(opt.dosha, i));
+      optList.appendChild(btn);
+    });
+
+    card.classList.remove('slide-out');
+    card.classList.add('slide-in');
+    setTimeout(() => card.classList.remove('slide-in'), 400);
+  }, direction === 'init' ? 0 : 300);
+}
+
+function selectAnswer(dosha, idx) {
+  if (transitioning) return;
+  transitioning = true;
+
+  // Highlight selected
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.classList.remove('selected'));
+  btns[idx].classList.add('selected');
+
+  scores[dosha]++;
+  answers.push(dosha);
+
+  setTimeout(() => {
+    transitioning = false;
+    currentQ++;
+    if (currentQ < QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      showScreen('gate');
+    }
+  }, 420);
+}
+
+// ────────────────────────────────────────────────
+// EMAIL GATE
+// ────────────────────────────────────────────────
+function submitGate(e) {
+  e.preventDefault();
+  const nameEl  = document.getElementById('gate-name');
+  const emailEl = document.getElementById('gate-email');
+  const errName  = document.getElementById('err-name');
+  const errEmail = document.getElementById('err-email');
+
+  let valid = true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Reset
+  nameEl.classList.remove('error');
+  emailEl.classList.remove('error');
+  errName.classList.remove('visible');
+  errEmail.classList.remove('visible');
+
+  if (!nameEl.value.trim()) {
+    nameEl.classList.add('error');
+    errName.classList.add('visible');
+    valid = false;
+  }
+
+  if (!emailEl.value.trim() || !emailRegex.test(emailEl.value.trim())) {
+    emailEl.classList.add('error');
+    errEmail.classList.add('visible');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  // Log (never log passwords; name+email is fine for lead capture)
+  console.log('[Santoshland Dosha Quiz] Lead captured:', {
+    name: nameEl.value.trim(),
+    email: emailEl.value.trim(),
+    scores: { ...scores },
+    dosha: dominantDosha()
+  });
+
+  showResults(nameEl.value.trim());
+}
+
+// ────────────────────────────────────────────────
+// RESULTS
+// ────────────────────────────────────────────────
+function dominantDosha() {
+  return Object.keys(scores).reduce((a, b) => scores[a] >= scores[b] ? a : b);
+}
+
+function showResults(name) {
+  const winner = dominantDosha();
+  const data   = RESULTS[winner];
+
+  // Score strip
+  const strip = document.getElementById('score-strip');
+  const labels = { V: 'Vata', P: 'Pitta', K: 'Kapha' };
+  const classes = { V: 'vata-pill', P: 'pitta-pill', K: 'kapha-pill' };
+  strip.innerHTML = Object.keys(scores).map(k =>
+    `<span class="score-pill ${classes[k]}">${labels[k]}: ${scores[k]}</span>`
+  ).join('');
+
+  // Build result card HTML
+  const card = document.getElementById('result-card');
+  card.innerHTML = `
+    <div class="result-header ${data.type}">
+      <div class="result-symbol-wrap">${data.symbol}</div>
+      <div class="dosha-badge">${data.badge}</div>
+      <h2 class="result-headline">${data.headline}</h2>
+      <p class="result-subhead">${data.subhead}</p>
+    </div>
+    <div class="result-body ${data.type}">
+
+      <div class="result-section">
+        <div class="result-section-title ${data.type}-accent">Your Key Traits</div>
+        <ul class="traits-list">
+          ${data.traits.map(t => `<li><span class="trait-dot"></span>${t}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="ornament">· · ✦ · ·</div>
+
+      <div class="result-section">
+        <div class="result-section-title ${data.type}-accent">Signs of Imbalance</div>
+        <ul class="imbalance-list">
+          ${data.imbalances.map(i => `<li><span>${i.icon}</span>${i.text}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="ornament">· · ✦ · ·</div>
+
+      <div class="result-section">
+        <div class="result-section-title ${data.type}-accent">Ayurvedic Recommendations</div>
+        <ul class="reco-list">
+          ${data.recommendations.map((r, i) =>
+            `<li><span class="reco-num">${i + 1}</span><span>${r}</span></li>`
+          ).join('')}
+        </ul>
+      </div>
+
+      <div class="ornament">· · ✦ · ·</div>
+
+      <div class="result-cta ${data.type}-cta">
+        <button class="btn" onclick="openConsultation('${data.type}')">
+          ${data.cta}
+        </button>
+        <p style="margin-top:0.75rem; font-size:0.8rem; color:var(--text-muted);">
+          Free 30-minute session · No obligation · Personalized to your dosha
+        </p>
+      </div>
+
+    </div>
+  `;
+
+  showScreen('results');
+  launchConfetti(data.type);
+}
+
+function openConsultation(type) {
+  // Placeholder — replace with actual booking URL
+  console.log('[Santoshland] Booking consultation for dosha:', type);
+  alert('Redirecting to booking page… (connect your scheduler URL here)');
+}
+
+function retakeQuiz() {
+  startQuiz();
+}
+
+// ────────────────────────────────────────────────
+// CONFETTI
+// ────────────────────────────────────────────────
+function launchConfetti(doshaType) {
+  const canvas  = document.getElementById('confetti-canvas');
+  const ctx     = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const COLORS = {
+    vata:  ['#B8A0FF', '#7C5CBF', '#D6C8FF', '#C8860A', '#FDF6EE'],
+    pitta: ['#FFBB88', '#C94B1A', '#FFE8DD', '#C8860A', '#FDF6EE'],
+    kapha: ['#88ECD8', '#1A8A7A', '#D6F5F0', '#C8860A', '#FDF6EE']
+  };
+
+  const colors = COLORS[doshaType];
+  const pieces = [];
+  const count  = 110;
+
+  for (let i = 0; i < count; i++) {
+    pieces.push({
+      x:  Math.random() * canvas.width,
+      y:  -10 - Math.random() * canvas.height * 0.4,
+      w:  4 + Math.random() * 8,
+      h:  8 + Math.random() * 12,
+      r:  Math.random() * Math.PI * 2,
+      dr: (Math.random() - 0.5) * 0.18,
+      vx: (Math.random() - 0.5) * 2.5,
+      vy: 2 + Math.random() * 3.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: 0.7 + Math.random() * 0.3
+    });
+  }
+
+  let frame;
+  let elapsed = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    elapsed++;
+
+    pieces.forEach(p => {
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.r  += p.dr;
+      p.vy += 0.04; // gravity
+
+      if (p.y > canvas.height + 20) {
+        p.y = -20;
+        p.x = Math.random() * canvas.width;
+      }
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.globalAlpha = elapsed > 120 ? p.opacity * (1 - (elapsed - 120) / 80) : p.opacity;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+
+    if (elapsed < 200) {
+      frame = requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      cancelAnimationFrame(frame);
+    }
+  }
+
+  draw();
+}
+
+// Resize confetti canvas if window changes
+window.addEventListener('resize', () => {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
